@@ -1,7 +1,6 @@
 "use client";
 
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
+import { motion, useInView, easeOut } from 'framer-motion';
 import { useRef } from 'react';
 
 interface AnimatedTextProps {
@@ -12,13 +11,13 @@ interface AnimatedTextProps {
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span';
 }
 
-const AnimatedText = ({ 
-  text, 
-  className = '', 
-  delay = 0, 
-  staggerDelay = 0.02,
-  as: Component = 'p'
-}: AnimatedTextProps) => {
+const AnimatedText = ({
+                        text,
+                        className = '',
+                        delay = 0,
+                        staggerDelay = 0.02,
+                        as: Component = 'p'
+                      }: AnimatedTextProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -36,18 +35,18 @@ const AnimatedText = ({
   };
 
   const wordVariants = {
-    hidden: { 
-      opacity: 0, 
+    hidden: {
+      opacity: 0,
       y: 20,
       filter: "blur(4px)"
     },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       filter: "blur(0px)",
       transition: {
         duration: 0.5,
-        ease: "easeOut"
+        ease: easeOut // исправление здесь
       }
     }
   };
