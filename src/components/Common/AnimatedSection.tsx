@@ -1,7 +1,6 @@
 "use client";
 
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
+import { motion, useInView, easeOut } from 'framer-motion'; // 👈 импортируем easeOut
 import { useRef } from 'react';
 
 interface AnimatedSectionProps {
@@ -12,13 +11,13 @@ interface AnimatedSectionProps {
   duration?: number;
 }
 
-const AnimatedSection = ({ 
-  children, 
-  className = '', 
-  delay = 0, 
-  direction = 'up',
-  duration = 0.6 
-}: AnimatedSectionProps) => {
+const AnimatedSection = ({
+                           children,
+                           className = '',
+                           delay = 0,
+                           direction = 'up',
+                           duration = 0.6
+                         }: AnimatedSectionProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -35,8 +34,8 @@ const AnimatedSection = ({
       transition: {
         duration,
         delay,
-        ease: "easeOut"
-      }
+        ease: easeOut, // 👈 передаём функцию, а не строку
+      },
     }
   };
 
