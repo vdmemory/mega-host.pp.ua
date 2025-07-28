@@ -5,8 +5,10 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "../LanguageSwitcher";
-import ThemeToggler from "./ThemeToggler";
 import useMenuData from "./menuData";
+import SocialLinks from "@/components/SocialLinks";
+import logo from "@/assets/logo.png";
+import { configCompany } from "@/lib/configCompany";
 
 const Header = () => {
   const { t } = useTranslation();
@@ -54,27 +56,21 @@ const Header = () => {
       >
         <div className="container">
           <div className="relative -mx-4 flex items-center justify-between">
-            <div className="w-60 max-w-full px-4 xl:mr-12">
+            <div className="w-80 max-w-full px-4 xl:mr-12 flex">
               <Link
                 href="/"
-                className={`header-logo block w-full ${
+                className={`text-2xl font-bold header-logo w-full flex gap-4 justify-center items-center ${
                   sticky ? "py-5 lg:py-2" : "py-8"
                 } `}
               >
                 <Image
-                  src="/images/logo/logo-2.svg"
+                  src={logo.src}
                   alt="logo"
-                  width={140}
-                  height={30}
-                  className="w-full dark:hidden"
+                  width={50}
+                  height={50}
+                  className="hidden dark:block rounded-full"
                 />
-                <Image
-                  src="/images/logo/logo.svg"
-                  alt="logo"
-                  width={140}
-                  height={30}
-                  className="hidden w-full dark:block"
-                />
+                {configCompany.name}
               </Link>
             </div>
             <div className="flex w-full items-center justify-between px-4">
@@ -112,11 +108,11 @@ const Header = () => {
                   <ul className="block lg:flex lg:space-x-12">
                     {menuData.map((menuItem, index) => (
                       <li key={index} className="group relative">
-                        {menuItem.path ? (
+                        {menuItem.key ? (
                           <Link
-                            href={menuItem.path}
+                            href={menuItem.key}
                             className={`flex py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 ${
-                              usePathName === menuItem.path
+                              usePathName === menuItem.key
                                 ? "text-primary dark:text-white"
                                 : "text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
                             }`}
@@ -141,21 +137,6 @@ const Header = () => {
                                 </svg>
                               </span>
                             </p>
-                            <div
-                              className={`submenu dark:bg-dark relative top-full left-0 rounded-sm bg-white transition-[top] duration-300 group-hover:opacity-100 lg:invisible lg:absolute lg:top-[110%] lg:block lg:w-[250px] lg:p-4 lg:opacity-0 lg:shadow-lg lg:group-hover:visible lg:group-hover:top-full ${
-                                openIndex === index ? "block" : "hidden"
-                              }`}
-                            >
-                              {menuItem.submenu.map((submenuItem, index) => (
-                                <Link
-                                  href={submenuItem.path}
-                                  key={index}
-                                  className="text-dark hover:text-primary block rounded-sm py-2.5 text-sm lg:px-3 dark:text-white/70 dark:hover:text-white"
-                                >
-                                  {submenuItem.title}
-                                </Link>
-                              ))}
-                            </div>
                           </>
                         )}
                       </li>
@@ -164,23 +145,10 @@ const Header = () => {
                 </nav>
               </div>
               <div className="flex items-center justify-end pr-16 lg:pr-0">
-                <Link
-                  href="/signin"
-                  className="text-dark hidden px-4 py-3 text-base font-medium hover:opacity-70 md:block dark:text-white"
-                >
-                  {t('nav.signin')}
-                </Link>
-                <Link
-                  href="/signup"
-                  className="ease-in-up shadow-btn hover:shadow-btn-hover bg-primary hover:bg-primary/90 hidden rounded-xs px-4 py-3 text-base font-medium text-white transition duration-300 md:block lg:px-4 xl:px-6"
-                >
-                  {t('nav.signup')}
-                </Link>
+                <SocialLinks isHeader isLight />
+
                 <div className="ml-4">
                   <LanguageSwitcher />
-                </div>
-                <div>
-                  <ThemeToggler />
                 </div>
               </div>
             </div>

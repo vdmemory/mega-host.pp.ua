@@ -4,9 +4,12 @@ import { useTranslation } from "react-i18next";
 import AnimatedSection from "../Common/AnimatedSection";
 import AnimatedText from "../Common/AnimatedText";
 import NewsLatterBox from "./NewsLatterBox";
+import { configCompany } from "@/lib/configCompany";
 
 const Contact = () => {
   const { t } = useTranslation();
+
+  const actionEmail = `https://formsubmit.co/${configCompany.formEmail}`;
 
   return (
     <section id="contact" className="overflow-hidden py-16 md:py-20 lg:py-28">
@@ -31,7 +34,7 @@ const Contact = () => {
                 delay={0.2}
               />
               <AnimatedSection delay={0.3}>
-                <form>
+                <form action={actionEmail} method="POST">
                   <div className="-mx-4 flex flex-wrap">
                     <div className="w-full px-4 md:w-1/2">
                       <div className="mb-8">
@@ -42,6 +45,7 @@ const Contact = () => {
                           {t('contact.name')}
                         </label>
                         <input
+                          name="name"
                           type="text"
                           placeholder={t('contact.name')}
                           className="border-stroke w-full rounded-xs border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-hidden focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark dark:shadow-two dark:focus:border-primary dark:focus:shadow-none"
@@ -57,6 +61,7 @@ const Contact = () => {
                           {t('contact.email')}
                         </label>
                         <input
+                          name="email"
                           type="email"
                           placeholder={t('contact.email')}
                           className="border-stroke w-full rounded-xs border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-hidden focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark dark:shadow-two dark:focus:border-primary dark:focus:shadow-none"
@@ -90,9 +95,24 @@ const Contact = () => {
             </div>
           </div>
           <div className="w-full px-4 lg:w-5/12 xl:w-4/12">
-            <AnimatedSection delay={0.4} direction="left">
+            <div
+              className="mb-12 rounded-xs bg-white px-8 py-11 shadow-three dark:bg-gray-dark sm:p-[55px] lg:mb-5 lg:px-8 xl:p-[55px]"
+              data-wow-delay=".15s"
+            >
+              <AnimatedText
+                text={t('contact.infoTitle')}
+                as="h2"
+                className="mb-3 text-2xl font-bold text-black dark:text-white sm:text-3xl lg:text-2xl xl:text-3xl"
+                delay={0.1}
+              />
+              <AnimatedText
+                text={t('contact.infoSubtitle')}
+                as="p"
+                className="mb-12 text-base font-medium text-body-color"
+                delay={0.2}
+              />
               <NewsLatterBox />
-            </AnimatedSection>
+            </div>
           </div>
         </div>
       </div>

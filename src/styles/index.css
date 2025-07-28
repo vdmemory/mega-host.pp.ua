@@ -80,6 +80,10 @@ layer(base);
   ::file-selector-button {
     border-color: var(--color-gray-200, currentcolor);
   }
+
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 @utility sticky {

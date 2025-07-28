@@ -1,6 +1,10 @@
+"use client";
+
 import { Brand } from "@/types/brand";
 import Image from "next/image";
 import brandsData from "./brandsData";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 const Brands = () => {
   return (
@@ -24,9 +28,17 @@ export default Brands;
 
 const SingleBrand = ({ brand }: { brand: Brand }) => {
   const { href, image, imageLight, name } = brand;
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   return (
-    <div className="flex w-1/2 items-center justify-center px-3 py-[15px] sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6">
+    <motion.div
+      ref={ref}
+      className="flex w-1/2 items-center justify-center px-3 py-[15px] sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6"
+      initial={{ opacity: 0, y: 30 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+    >
       <a
         href={href}
         target="_blank"
@@ -36,6 +48,6 @@ const SingleBrand = ({ brand }: { brand: Brand }) => {
         <Image src={imageLight} alt={name} fill className="hidden dark:block" />
         <Image src={image} alt={name} fill className="block dark:hidden" />
       </a>
-    </div>
+    </motion.div>
   );
 };

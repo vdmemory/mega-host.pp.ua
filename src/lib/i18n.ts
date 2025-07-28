@@ -66,6 +66,15 @@ const resources = {
           support: "24/7 Support"
         }
       },
+      about2: {
+        title: "Bug free code",
+        subtitle: 'We are a leading provider of software development, cybersecurity, and IT consulting services. Our mission is to empower businesses with innovative technology solutions that drive growth and efficiency.',
+        vision: "Premier support",
+        visionText: "To be the most trusted partner for businesses looking to leverage technology for success.",
+        mission: "Next.js",
+        missionText: "To deliver high-quality, reliable, and scalable IT solutions that meet the unique needs of our clients."
+      },
+
       // Services
       services: {
         title: "Comprehensive IT Services",
@@ -98,7 +107,12 @@ const resources = {
           address: "123 Tech Street, IT District, City 12345",
           phone: "+1 (555) 123-4567",
           email: "info@megahost.com"
-        }
+        },
+        infoTitle: "Contact Information",
+        infoSubtitle: "Feel free to reach out to us for any inquiries or support.",
+        emailUs: 'Email Us',
+        phoneUs: 'Call Us',
+        addressUS: 'Visit Us'
       },
       // Footer
       footer: {
@@ -179,6 +193,14 @@ const resources = {
           support: "Підтримка 24/7"
         }
       },
+      about2: {
+        title: "Безпомилковий код",
+        subtitle: 'Ми є провідним постачальником послуг з розробки програмного забезпечення, кібербезпеки та IT-консалтингу. Наша місія - надати бізнесу інноваційні технологічні рішення, які сприяють зростанню та ефективності.',
+        vision: "Преміум підтримка",
+        visionText: "Бути найнадійнішим партнером для бізнесів, які прагнуть використовувати технології для досягнення успіху.",
+        mission: "Next.js",
+        missionText: "Надавати високоякісні, надійні та масштабовані IT-рішення, які відповідають унікальним потребам наших клієнтів."
+        },
       // Services
       services: {
         title: "Комплексні IT-послуги",

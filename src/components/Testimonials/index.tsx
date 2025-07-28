@@ -1,8 +1,13 @@
-import { Testimonial } from "@/types/testimonial";
+"use client";
+
+import { type Testimonial } from "@/types/testimonial";
 import SectionTitle from "../Common/SectionTitle";
 import SingleTestimonial from "./SingleTestimonial";
+import { useTranslation } from "react-i18next";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
-const testimonialData: Testimonial[] = [
+const testimonialDataEng: Testimonial[] = [
   {
     id: 1,
     name: "Musharof Chy",
@@ -32,20 +37,63 @@ const testimonialData: Testimonial[] = [
   },
 ];
 
+const testimonialDataUa: Testimonial[] = [
+  {
+    id: 1,
+    name: "Мушароф Чі",
+    designation: "Засновник @TailGrids",
+    content:
+      "Наші учасники в захваті. Інтерфейс інтуїтивно зрозумілий, чистий і без зайвих відволікань. Якщо ви створюєте спільноту — це саме те, що потрібно.",
+    image: "/images/testimonials/auth-01.png",
+    star: 5,
+  },
+  {
+    id: 2,
+    name: "Девід Вейліум",
+    designation: "Засновник @UIdeck",
+    content:
+      "Наші учасники в захваті. Інтерфейс інтуїтивно зрозумілий, чистий і без зайвих відволікань. Якщо ви створюєте спільноту — це саме те, що потрібно.",
+    image: "/images/testimonials/auth-02.png",
+    star: 5,
+  },
+  {
+    id: 3,
+    name: "Летіум Френсі",
+    designation: "Засновник @Lineicons",
+    content:
+      "Наші учасники в захваті. Інтерфейс інтуїтивно зрозумілий, чистий і без зайвих відволікань. Якщо ви створюєте спільноту — це саме те, що потрібно.",
+    image: "/images/testimonials/auth-03.png",
+    star: 5,
+  },
+];
+
+const titleEng = "What Our Users Says";
+const paragraphEng =
+  "There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form.";
+
+const titleUa = "Що кажуть наші користувачі";
+const paragraphUa =
+  "Існує безліч варіацій текстів Lorem Ipsum, але більшість з них зазнали змін у тій чи іншій формі.";
+
 const Testimonials = () => {
+  const { i18n } = useTranslation();
+  const testimonialData = i18n.language === "en" ? testimonialDataEng : testimonialDataUa;
+  const title = i18n.language === "en" ? titleEng : titleUa;
+  const paragraph = i18n.language === "en" ? paragraphEng : paragraphUa;
+
   return (
     <section className="dark:bg-bg-color-dark bg-gray-light relative z-10 py-16 md:py-20 lg:py-28">
       <div className="container">
         <SectionTitle
-          title="What Our Users Says"
-          paragraph="There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form."
+          title={title}
+          paragraph={paragraph}
           center
         />
 
         <div className="grid grid-cols-1 gap-x-8 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
-          {testimonialData.map((testimonial) => (
-            <SingleTestimonial key={testimonial.id} testimonial={testimonial} />
-          ))}
+          {testimonialData.map((testimonial, index) =>
+          <Testimonial key={testimonial.id} testimonial={testimonial} index={index} />
+          )}
         </div>
       </div>
       <div className="absolute right-0 top-5 z-[-1]">
@@ -181,3 +229,26 @@ const Testimonials = () => {
 };
 
 export default Testimonials;
+
+const Testimonial = ({
+  testimonial,
+  index,
+}: {
+  testimonial: Testimonial;
+  index: number;
+}) => {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, amount: 0.2 });
+
+  return (
+    <motion.div
+      ref={ref}
+      key={testimonial.id}
+      initial={{ opacity: 0, y: 50 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, delay: index * 0.2 }}
+    >
+      <SingleTestimonial testimonial={testimonial} />
+    </motion.div>
+  );
+}
