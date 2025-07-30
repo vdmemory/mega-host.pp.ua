@@ -10,9 +10,9 @@ import { configCompany } from "@/lib/configCompany";
 const SocialLinks = ({ isHeader = false, isLight = false }: { isHeader?: boolean; isLight?: boolean }) => {
     const socialLinks = [
         { icon: facebook, href: configCompany.facebook, color: '#A01F5D' },
-        { icon: linkedin, href: configCompany.linkedin, color: '#2B7AC2' },
+        // { icon: linkedin, href: configCompany.linkedin, color: '#2B7AC2' },
         { icon: insa, href: configCompany.instagram, color: '#FBB216' },
-        { icon: olx, href: configCompany.olx, color: '#64B232' },
+        // { icon: olx, href: configCompany.olx, color: '#64B232' },
         { icon: prom, href: configCompany.prom, color: '#FF4500' },
     ];
 
