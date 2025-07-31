@@ -233,7 +233,12 @@ const resources = {
           address: "вул. Технологічна 123, IT район, Місто 12345",
           phone: "+38 (050) 123-4567",
           email: "info@megahost.com"
-        }
+        },
+        infoTitle: "Контактна інформація",
+        infoSubtitle: "Не соромтеся звертатися до нас з будь-якими запитаннями чи підтримкою.",
+        emailUs: 'Напишіть нам',
+        phoneUs: 'Зателефонуйте нам',
+        addressUS: 'Відвідайте нас'
       },
       // Footer
       footer: {
